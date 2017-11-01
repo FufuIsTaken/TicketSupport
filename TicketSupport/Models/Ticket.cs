@@ -9,16 +9,25 @@ namespace TicketSupport.Models
     public class Ticket
     {
         public int Id { get; set; }
-        [Required]
-        public string Customer { get; set; }
-        [Required]
+        public ApplicationUser Customer { get; set; }
         public string Application { get; set; }
-        [Required]
         public string Subject { get; set; }
-        [Required]
         public string Description { get; set; }
         public DateTime Date { get; set; }
-        public string Status { get; set; }
+        public StatusEnum Status { get; set; }
 
+
+        public Ticket()
+        {
+            Date = DateTime.Now;
+            Status = StatusEnum.New;
+        }
+    }
+
+    public enum StatusEnum
+    {
+        New,
+        Processing,
+        Resolved
     }
 }
